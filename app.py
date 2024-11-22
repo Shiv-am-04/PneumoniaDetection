@@ -3,6 +3,18 @@ from tensorflow.keras.models import load_model
 from tensorflow.keras.preprocessing import image
 from tensorflow.keras.applications.vgg19 import preprocess_input
 import numpy as np
+import requests
+import os
+
+model_url = 'https://github.com/Shiv-am-04/PneumoniaDetection/releases/download/v.0.1/new_best_model.keras'
+model_path = 'model.keras
+
+if not os.path.exists(model_path):
+    response = requests.get(model_url)
+    with open(model_path,'wb') as f:
+        f.write(response.content)
+
+model = load_model(model_path)
 
 def prediction(path,model):
     img = image.load_img(path,target_size=(224,224))
@@ -16,8 +28,6 @@ def prediction(path,model):
     class_label = (pred > 0.5).astype("int32")
 
     return class_label
-
-model = load_model('new_best_model.keras')
 
 # streamlit app
 
