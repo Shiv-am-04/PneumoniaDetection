@@ -7,7 +7,7 @@ import requests
 import os
 
 model_url = 'https://github.com/Shiv-am-04/PneumoniaDetection/releases/download/v.0.1/new_best_model.keras'
-model_path = 'model.keras
+model_path = 'model.keras'
 
 if not os.path.exists(model_path):
     response = requests.get(model_url)
